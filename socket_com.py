@@ -20,5 +20,5 @@ if MODE == 's':
         print(f"Connection from {address} has been established.")
 elif MODE == 'c':
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((socket.gethostname(), 1234))
+    s.connect(('192.168.1.176', 1234))
 
