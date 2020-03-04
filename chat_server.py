@@ -5,7 +5,7 @@ HEADER_LENGTH = 10
 
 SABER = '192.168.1.176'
 LOCAL = "127.0.0.1"
-IP = LOCAL
+IP = SABER
 PORT = 1234
 
 # Create a socket
