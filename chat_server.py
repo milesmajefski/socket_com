@@ -3,7 +3,9 @@ import select
 
 HEADER_LENGTH = 10
 
-IP = "127.0.0.1"
+SABER = '192.168.1.176'
+LOCAL = "127.0.0.1"
+IP = LOCAL
 PORT = 1234
 
 # Create a socket
