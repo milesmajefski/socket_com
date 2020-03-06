@@ -1,15 +1,22 @@
 import socket
 import utils
 import sys
+import yaml
+
+with open("config.yaml", "rb") as fh:
+    config = yaml.load(fh.read())
 
 self_ip = utils.get_host_ip()
-host_list = ['192.168.1.86', '192.168.176', '10.220.4.67']
+host_list = config["hosts"]
 print(self_ip)
+print(host_list)
 
+try:
+    MODE = sys.argv[1]
+except Exception:
+    MODE = "s"
 
-MODE = sys.argv[1]
-
-if MODE == 's':
+if MODE == "s":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((socket.gethostname(), 1234))
     s.listen(5)
@@ -18,11 +25,11 @@ if MODE == 's':
         # now our endpoint knows about the OTHER endpoint.
         clientsocket, address = s.accept()
         print(f"Connection from {address} has been established.")
-        clientsocket.send(bytes("Hey there!!!","utf-8"))
+        clientsocket.send(bytes("Hey there!!!", "utf-8"))
 
-elif MODE == 'c':
+elif MODE == "c":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(('192.168.1.176', 1234))
+    s.connect(("192.168.1.176", 1234))
     msg = s.recv(1024)
     print(msg.decode("utf-8"))
 
