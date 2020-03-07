@@ -34,7 +34,7 @@ class Communicator:
 
     async def handle_outgoing(self):
         """"""
-        for host, conn in self.outgoing_connections:
+        for host, conn in self.outgoing_connections.items:
             conn.send(bytes("Hey there!!!", "utf-8"))
             asyncio.sleep(3)
 
