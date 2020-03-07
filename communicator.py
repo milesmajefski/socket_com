@@ -25,7 +25,8 @@ class Communicator:
         self.replier.connect((self.IP, 4321))
 
         for host in self.hosts:
-            self.outgoing_connections[host] = self.requester.connect((host, 4321))
+            self.requester.connect((host, 4321))
+            self.outgoing_connections[host] = self.requester.clientsocket
 
     async def handle_incoming(self):
         """"""

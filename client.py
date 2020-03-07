@@ -7,7 +7,7 @@ class Requester():
 
     def connect(self, connect_to):
         self.clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        return self.clientsocket.connect(connect_to)
+        self.clientsocket.connect(connect_to)
 
     def receive(self):
         msg = self.clientsocket.recv(1024)
