@@ -14,7 +14,7 @@ class Replier:
 
     async def accept_request(self):
         # now our endpoint knows about the OTHER endpoint.
-        clientsocket, address = self.s.accept()
+        clientsocket, address = self.serversocket.accept()
         # await self.s.accept()
         print(f"Connection from {address} has been established.")
         return clientsocket, address
