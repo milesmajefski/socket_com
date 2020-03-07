@@ -23,22 +23,29 @@ class Communicator:
 
     def setup(self):
         self.replier.connect((self.IP, 4321))
-        
+
         for host in self.hosts:
             self.outgoing_connections[host] = self.requester.connect((host, 4321))
 
     async def handle_incoming(self):
         """"""
-        clientsocket, address =  await self.replier.accept_request()
+        clientsocket, address = await self.replier.accept_request()
         self.replier.send_reply(clientsocket)
 
     async def handle_outgoing(self):
         """"""
-        
+        for host, conn in self.outgoing_connections:
+            conn.send(bytes("Hey there!!!", "utf-8"))
+            asyncio.sleep(3)
+
+
+async def handle_input():
+    """"""
 
 
 async def main():
     """"""
+    print(f'This computer\'s IP address: {socket.gethostname()}')
     connect_to_IP = input('IP to connect to: ')
     comm = Communicator(socket.gethostname(), Requester(), Replier())
     comm.hosts.append(connect_to_IP)
@@ -46,6 +53,7 @@ async def main():
     while comm.keep_going:
         await comm.handle_incoming()
         await comm.handle_outgoing()
+        await handle_input()
 
 
 if __name__ == '__main__':
