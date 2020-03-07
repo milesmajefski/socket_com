@@ -24,9 +24,9 @@ class Communicator:
     def setup(self):
         self.replier.connect((self.IP, 4321))
 
-        for host in self.hosts:
-            self.requester.connect((host, 4321))
-            self.outgoing_connections[host] = self.requester.clientsocket
+        # for host in self.hosts:
+        #     self.requester.connect((host, 4321))
+        #     self.outgoing_connections[host] = self.requester.clientsocket
 
     async def handle_incoming(self):
         """"""
@@ -35,11 +35,9 @@ class Communicator:
 
     async def handle_outgoing(self):
         """"""
-        # for host in self.hosts:
-        #     self.outgoing_connections[host] = self.requester.connect((host, 4321))
-
-        for host, conn in self.outgoing_connections.items():
-            conn.send(bytes("Hey there !!!", "utf-8"))
+        for host in self.hosts:
+            self.requester.connect((host, 4321))
+            self.requester.clientsocket.send(bytes("Hey there !!!", "utf-8"))
             await asyncio.sleep(3)
 
 
