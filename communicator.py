@@ -6,6 +6,7 @@ from server import Replier
 
 class Communicator:
     """Send and receive json messages"""
+
     def __init__(self, IP, requester: Requester, replier: Replier):
         self.hosts = []
         self.IP = IP
@@ -47,16 +48,19 @@ async def handle_input():
 
 async def main():
     """"""
-    print(f'This computer\'s IP address: {socket.gethostname()}')
-    connect_to_IP = input('IP to connect to: ')
-    comm = Communicator(socket.gethostname(), Requester(), Replier())
+    this_IP = socket.gethostbyname(socket.gethostname())
+    print(f"This computer's IP address: {this_IP}")
+    connect_to_IP = input("IP to connect to: ")
+
+    comm = Communicator(this_IP, Requester(), Replier())
     comm.hosts.append(connect_to_IP)
     comm.setup()
+
     while comm.keep_going:
         await comm.handle_incoming()
         await comm.handle_outgoing()
         await handle_input()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
