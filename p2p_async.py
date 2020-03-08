@@ -28,7 +28,7 @@ async def make_requests():
         print("Close the connection")
         writer.close()
 
-        await asyncio.sleep(3)
+        # await asyncio.sleep(3)
 
 
 def setup():
