@@ -41,5 +41,5 @@ if __name__ == "__main__":
     setup()
     loop = asyncio.get_event_loop()
     loop.create_task(asyncio.start_server(handle_client, "localhost", 15555))
-    loop.create_task(asyncio.run(make_requests()))
+    loop.create_task(make_requests())
     loop.run_forever()
