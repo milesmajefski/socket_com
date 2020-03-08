@@ -49,6 +49,7 @@ async def handle_input():
 async def main():
     """"""
     this_IP = socket.gethostbyname(socket.gethostname())
+    print('-------------- Communicator --------------')
     print(f"This computer's IP address: {this_IP}")
     connect_to_IP = input("IP to connect to: ")
 
