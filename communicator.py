@@ -50,7 +50,7 @@ async def main():
     """"""
     this_IP = socket.gethostbyname(socket.gethostname())
     print('-------------- Communicator --------------')
-    print(f"This computer's IP address: {this_IP}")
+    print(f"Your IP address: {this_IP}")
     connect_to_IP = input("IP to connect to: ")
 
     comm = Communicator(this_IP, Requester(), Replier())
